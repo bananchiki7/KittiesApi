@@ -3,12 +3,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import colors from "../../constans/colors";
 
 export const ButtonStyled = styled.button`
-    width: 180px;
-    height: 50px;
+    width: 200px;
+    height: 60px;
+    margin-top: 20px;
     margin-left: 30px;
     font-size: 35px;
-    border: 3px solid ${colors.BLACK};
+    border: 4px solid ${colors.MEDIUM_GREY};
     border-radius: 15px;
+`
+
+export const TitleStyled = styled.h1`
+  font-size: 44px;
+  font-weight: 600;
+  margin-top: 40px;
 `
 
 export const GlobalStyle = createGlobalStyle`

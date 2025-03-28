@@ -7,13 +7,13 @@ export const WrapField = styled.label`
   align-items: center;
   gap: 20px;
   padding: 10px;
-  font-size: 25px;
+  font-size: 34px;
 `;
 
 export const StyledInput = styled(Field)`
- height: 30px;
-  padding-left: 20px;
-  font-size: 20px;
+ height: 40px;
+  padding-left: 26px;
+  font-size: 26px;
   border: 3px solid ${colors.BLACK};
   border-radius: 5px;
 `;

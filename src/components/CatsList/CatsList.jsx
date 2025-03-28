@@ -1,13 +1,13 @@
 import { Component } from "react";
-import { List, ListItem, ItemImage, ItemTitle, ItemText } from "./LangList.styled";
+import { List, ListItem, ItemImage, ItemTitle, ItemText } from "./CatsList.styled";
 
-class LangList extends Component {
+class CatsList extends Component {
   render() {
-    const { langs } = this.props;
+    const { catsList } = this.props;
 
     return (
       <List>
-        {langs.map((item) => {
+        {catsList.map((item) => {
           const name = item.breeds[0].name;
           const origin = item.breeds[0].origin;
           const temperament = item.breeds[0].temperament;
@@ -26,4 +26,4 @@ class LangList extends Component {
   }
 }
 
-export default LangList;
+export default CatsList;

@@ -1,23 +1,30 @@
 import { Formik, Form, Field } from "formik";
 import { Component } from "react";
-import { WrapField, StyledInput, FormStyled } from "./FilterFormik.styled";
+import { WrapField, StyledInput, FormStyled } from "./CatsFilter.styled";
 import api from "../../api";
 import { emptyToast } from "../../constans/toasts";
 
-class FilterFormik extends Component {
+const allBreeds = await api.getBreeds();
+
+class CatsFilter extends Component {
   handleChange = async (e) => {
-    const { updateLangs, updateLoading } = this.props;
+    const { updateCats, updateLoading, changeList, sortCatsByBreeds, updateBreeds } = this.props;
     updateLoading(true);
-    updateLangs([]);
+    updateCats([]);
+    const value = e.target.value.trim()
 
-    const breeds = await api.getBreeds();
+    if(value === ""){
+      console.log("this list changes");
+      await updateBreeds([])
+      await changeList()
+      return
+    }
 
-    const similarBreeds = breeds.filter((item) => {
-      return item.name.toLowerCase().startsWith(e.target.value.toLowerCase());
+    const similarBreeds = allBreeds.filter((item) => {
+      return item.name.toLowerCase().includes(value.toLowerCase());
     });
-    console.log(similarBreeds);
 
-    if (similarBreeds.length === 0 || e.target.value === "") {
+    if (similarBreeds.length === 0 ) {
       console.log("not found");
       emptyToast();
     } else {
@@ -26,11 +33,13 @@ class FilterFormik extends Component {
           return await api.getImagesDyBreeds(item.id);
         })
       );
-      updateLangs(images.flat());
+      sortCatsByBreeds(images.flat());
+      updateBreeds(similarBreeds)
     }
 
     updateLoading(false);
   };
+  
   render() {
     return (
       <Formik>
@@ -52,4 +61,4 @@ class FilterFormik extends Component {
   }
 }
 
-export default FilterFormik;
+export default CatsFilter;
